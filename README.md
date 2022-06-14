@@ -1,1 +1,1 @@
-eshop template
+prontolux template
