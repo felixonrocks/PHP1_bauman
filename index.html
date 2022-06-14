@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="styles.css" type="text/css">
+    <head>
+        
+        <title>Prontolux</title>
+        <?php echo $IEst; ?>
+        <script type="text/javascript" src="getElementsByClassName-1.0.1.js"></script>
+        <?php echo $IEjs; ?>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                     <?php if($ref!='viewProd'){
+					?>
+                    <a id="logo" href="index.php"><img class="logo" src="admin/images/logo.jpg" /></a>
+                    <div id="search"><form name="search" action="index.php?go=prods&act=search&img=<?php echo $startup_img; ?>" method="post"><input type="text" name="qry" /><input type="submit" value="Recherche" class="send"></form></div>
+                    <ul id="menu">
+                            <li><a <?php
+                            if($go == 'prods'){
+                                echo 'class="selected"';
+                            }
+                            ?> href="index.php?go=prods&img=<?php echo $startup_img; ?>">Produits</a></li>
+                            <?php
+                            $sqlSections = "SELECT section_id, section_name, section_file FROM site_sections WHERE is_shown=1 ORDER BY section_order";
+                            if($querySections = @mysql_query($sqlSections, $db_conn)){
+                                    while($resSections = mysql_fetch_array($querySections)){
+										if(strlen($resSections['section_file'])>0){
+												echo '<li><a href="http://'.$resSections['section_file'].'"';
+											}else{
+                                       			echo '<li><a href="index.php?ref=sections&go='.$resSections['section_id'].'&img='.$startup_img.'"';
+												
+												if($ref=='sections'){
+													if($resSections['section_id']==$section_id){
+														echo 'class="selected"';
+													}
+												}
+											}
+                                        echo '>'.$resSections['section_name'].'</a></li>';
+                                        }
+                                    }
+                             ?>
+                    </ul>
+                    <?php }else{
+							?>
+                                                        <img class="logo" src="admin/images/logo.jpg" style="width:180px;" />
+							<a href="#" onClick="window.print()" style="float:right; margin-right:35px; margin-top:50px;"><img width="40%" src="admin/images/imprimante.jpg" /><br /></a>
+                            
+						<?php
+						} ?>
+            </div>
+            <div class="lightbox"></div>  <div class="lightbox1"></div>	
+            <div id="principal">
+                <div id="cookieTrail"><? echo $cookie; ?></div>
+                    <? echo $show; ?>
+            </div> 
+            <div id="footer">
+                    <ul id="footLinks">
+                    <?php
+                            $sqlSectionsF = "SELECT section_id, section_name, section_file FROM site_footers WHERE is_shown=1 ORDER BY section_order";
+                            if($querySectionsF = @mysql_query($sqlSectionsF, $db_conn)){
+                                    while($resSectionsF = mysql_fetch_array($querySectionsF)){
+										if(strlen($resSectionsF['section_file'])>0){
+												echo '<li><a href="http://'.$resSectionsF['section_file'].'"';
+											}else{
+                                       			echo '<li><a href="index.php?ref=sectionsf&go='.$resSectionsF['section_id'].'&img='.$startup_img.'"';
+											}
+                                        echo '>'.$resSectionsF['section_name'].'</a></li>';
+                                        }
+                                    }
+                             ?>
+                    </ul>
+            </div>
+	</div>
+        
+    </body>
+    
+</html>
