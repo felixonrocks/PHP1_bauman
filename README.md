@@ -1,1 +1,1 @@
-eshop template
+eshop laravel for prontolux
