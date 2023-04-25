@@ -24,6 +24,7 @@
 
         <header>
             <nav>
+                anne linguistics
                 <ul>
                     <li><a href="/?p=main" class="lnk">Главная</a></li>
                     <li><a href="/?p=resume" class="lnk">Резюме</a></li>
