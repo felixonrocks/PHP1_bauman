@@ -1,0 +1,13 @@
+trix-toolbar{
+    display:none;
+}
+
+
+
+trix-editor{
+    .attachment.attachment--preview {
+        width: 200px;
+        margin: 5px;
+    }
+}
+
